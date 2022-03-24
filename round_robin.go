@@ -4,17 +4,24 @@ import (
 	"sync/atomic"
 )
 
-// roundRobin is a Balancer implementation using Round Robin for selecting amongst its contained elements.
+// roundRobin is a Balancer implementation using Round-robin for selecting amongst its contained elements.
 type roundRobin[T any] struct {
 	elements    []T
 	lenElements uint32
 	ctr         *uint32 // This relies on uint32 wrapping to 0 on overflow
 }
 
-// NewRoundRobin returns a Balancer implemented using the Round Robin method for selecting elements.
+// NewRoundRobin returns a Balancer implemented using the Round-robin method for selecting elements.
+//
+// The elements will be returned by Next in the order they were input - wrapping around to the start when the end of
+// the slice is reached.
 //
 // Note: behavior is undefined for a list of elements larger than the maximum value for the uint32 type.
 func NewRoundRobin[T any](elements []T) Balancer[T] {
+	if len(elements) < 1 {
+		return &emptyBalancer[T]{}
+	}
+
 	return newRoundRobin(elements)
 }
 

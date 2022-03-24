@@ -2,7 +2,8 @@
 
 ## Overview
 
-This package contains a round-robin load balancer which can be used to balance load over any Go type.
+This package contains a round-robin load balancer and a weighted round-robin load balancer.
+These can be used to balance load over any Go type.
 This was implemented to test the new Go 1.18 generics feature!
 
 ## How to use this package
@@ -35,6 +36,7 @@ func main() {
 
 In addition, the `Elements` function can be used to get back the original slice passed to `NewRoundRobin`. 
 
-Please read [the Godoc](https://pkg.go.dev/github.com/phonaputer/balancer) for this package for more details.
+Please read [the Godoc](https://pkg.go.dev/github.com/phonaputer/balancer) for this package for more details 
+and for information about other kinds of balancers.
 
 *Copyright 2022 Phonaputer*

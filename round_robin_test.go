@@ -4,6 +4,13 @@ import (
 	"testing"
 )
 
+func TestNewRoundRobin_EmptyList_ReturnsEmptyBalancer(t *testing.T) {
+	rr := NewRoundRobin[int](nil)
+
+	assertEqual(t, 0, rr.Next())
+	assertEqual(t, 0, len(rr.Elements()))
+}
+
 func TestRoundRobin_Next_ThreeElems_IteratesInOrderIncludingWrapping(t *testing.T) {
 	type idStruct struct{ ID int }
 
