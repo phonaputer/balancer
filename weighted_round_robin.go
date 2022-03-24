@@ -44,11 +44,7 @@ func (w *weightedRoundRobin[T]) Next() T {
 // The types may be mutable, but mutating their order in the slice will not affect
 // the weightedRoundRobin's internal slice order.
 func (w *weightedRoundRobin[T]) Elements() []T {
-	//var stored []T
-	//stored = w.weightTable.storedValues
-
-	length := len(w.weightTable.storedValues)
-	res := make([]T, length)
+	res := make([]T, len(w.weightTable.storedValues))
 
 	copy(res, w.weightTable.storedValues)
 
